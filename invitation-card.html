@@ -495,5 +495,55 @@
   </div>
 </div>
 
+<!-- Download Button (won't appear in the image) -->
+<button id="downloadBtn" style="
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  padding: 14px 28px;
+  background: #C9A96E;
+  color: #2D1F2F;
+  border: none;
+  border-radius: 8px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  z-index: 9999;
+  transition: all 0.3s ease;
+" onmouseover="this.style.background='#d4b87a';this.style.transform='translateY(-2px)'" onmouseout="this.style.background='#C9A96E';this.style.transform='translateY(0)'">
+  ⬇ Download HD Image
+</button>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script>
+  document.getElementById('downloadBtn').addEventListener('click', function() {
+    var btn = this;
+    btn.textContent = 'Generating...';
+    btn.disabled = true;
+    var card = document.querySelector('.card');
+    html2canvas(card, {
+      scale: 3,
+      useCORS: true,
+      backgroundColor: null,
+      width: 1080,
+      height: 1920,
+      logging: false
+    }).then(function(canvas) {
+      var link = document.createElement('a');
+      link.download = 'Shivam-Rekha-Wedding-Invitation.png';
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+      btn.textContent = '⬇ Download HD Image';
+      btn.disabled = false;
+    }).catch(function() {
+      btn.textContent = '⬇ Download HD Image';
+      btn.disabled = false;
+      alert('Something went wrong. Please try again.');
+    });
+  });
+</script>
+
 </body>
 </html>
