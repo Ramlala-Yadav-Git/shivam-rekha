@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shivam & Rekha - Wedding Invitation</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Dancing+Script:wght@400;500;600;700&family=Montserrat:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    background: #1a1a1a;
+    padding: 20px 0;
+  }
+
+  .card {
+    width: 1080px;
+    height: 1920px;
+    background: #3A4F35;
+    background-image:
+      radial-gradient(ellipse at 50% 0%, rgba(201, 169, 110, 0.08) 0%, transparent 60%),
+      radial-gradient(ellipse at 50% 100%, rgba(201, 169, 110, 0.08) 0%, transparent 60%),
+      radial-gradient(ellipse at 50% 50%, rgba(255, 255, 255, 0.03) 0%, transparent 70%);
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+
+  /* Subtle texture overlay */
+  .card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 40px,
+        rgba(201, 169, 110, 0.012) 40px,
+        rgba(201, 169, 110, 0.012) 41px
+      ),
+      repeating-linear-gradient(
+        -45deg,
+        transparent,
+        transparent 40px,
+        rgba(201, 169, 110, 0.012) 40px,
+        rgba(201, 169, 110, 0.012) 41px
+      );
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Outer border */
+  .border-outer {
+    position: absolute;
+    inset: 24px;
+    border: 2px solid rgba(201, 169, 110, 0.7);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* Inner border */
+  .border-inner {
+    position: absolute;
+    inset: 36px;
+    border: 1px solid rgba(201, 169, 110, 0.45);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* Corner decorations */
+  .corner {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  .corner::before,
+  .corner::after {
+    content: '';
+    position: absolute;
+    border-color: #C9A96E;
+    border-style: solid;
+  }
+
+  .corner-tl {
+    top: 28px;
+    left: 28px;
+  }
+  .corner-tl::before {
+    top: 0;
+    left: 0;
+    width: 60px;
+    height: 60px;
+    border-width: 0;
+    border-top: 3px solid #C9A96E;
+    border-left: 3px solid #C9A96E;
+    border-top-left-radius: 20px;
+  }
+  .corner-tl::after {
+    top: 14px;
+    left: 14px;
+    width: 36px;
+    height: 36px;
+    border-width: 0;
+    border-top: 1.5px solid rgba(201, 169, 110, 0.6);
+    border-left: 1.5px solid rgba(201, 169, 110, 0.6);
+    border-top-left-radius: 12px;
+  }
+
+  .corner-tr {
+    top: 28px;
+    right: 28px;
+  }
+  .corner-tr::before {
+    top: 0;
+    right: 0;
+    width: 60px;
+    height: 60px;
+    border-width: 0;
+    border-top: 3px solid #C9A96E;
+    border-right: 3px solid #C9A96E;
+    border-top-right-radius: 20px;
+  }
+  .corner-tr::after {
+    top: 14px;
+    right: 14px;
+    width: 36px;
+    height: 36px;
+    border-width: 0;
+    border-top: 1.5px solid rgba(201, 169, 110, 0.6);
+    border-right: 1.5px solid rgba(201, 169, 110, 0.6);
+    border-top-right-radius: 12px;
+  }
+
+  .corner-bl {
+    bottom: 28px;
+    left: 28px;
+  }
+  .corner-bl::before {
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 60px;
+    border-width: 0;
+    border-bottom: 3px solid #C9A96E;
+    border-left: 3px solid #C9A96E;
+    border-bottom-left-radius: 20px;
+  }
+  .corner-bl::after {
+    bottom: 14px;
+    left: 14px;
+    width: 36px;
+    height: 36px;
+    border-width: 0;
+    border-bottom: 1.5px solid rgba(201, 169, 110, 0.6);
+    border-left: 1.5px solid rgba(201, 169, 110, 0.6);
+    border-bottom-left-radius: 12px;
+  }
+
+  .corner-br {
+    bottom: 28px;
+    right: 28px;
+  }
+  .corner-br::before {
+    bottom: 0;
+    right: 0;
+    width: 60px;
+    height: 60px;
+    border-width: 0;
+    border-bottom: 3px solid #C9A96E;
+    border-right: 3px solid #C9A96E;
+    border-bottom-right-radius: 20px;
+  }
+  .corner-br::after {
+    bottom: 14px;
+    right: 14px;
+    width: 36px;
+    height: 36px;
+    border-width: 0;
+    border-bottom: 1.5px solid rgba(201, 169, 110, 0.6);
+    border-right: 1.5px solid rgba(201, 169, 110, 0.6);
+    border-bottom-right-radius: 12px;
+  }
+
+  /* Content */
+  .content {
+    position: relative;
+    z-index: 3;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 60px;
+    text-align: center;
+  }
+
+  /* Ornamental divider with diamond */
+  .ornament {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 400px;
+    gap: 0;
+  }
+
+  .ornament-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #C9A96E);
+  }
+
+  .ornament-line-right {
+    background: linear-gradient(90deg, #C9A96E, transparent);
+  }
+
+  .ornament-diamond {
+    width: 12px;
+    height: 12px;
+    background: #C9A96E;
+    transform: rotate(45deg);
+    flex-shrink: 0;
+    margin: 0 8px;
+  }
+
+  .ornament-dot {
+    width: 5px;
+    height: 5px;
+    background: #C9A96E;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin: 0 6px;
+  }
+
+  /* Typography */
+  .wedding-invitation {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2rem;
+    color: #C9A96E;
+    letter-spacing: 3px;
+    margin-top: 30px;
+  }
+
+  .shubh-vivah {
+    font-size: 2.6rem;
+    color: #C9A96E;
+    margin-top: 28px;
+    letter-spacing: 6px;
+    font-weight: 300;
+    text-shadow: 0 0 20px rgba(201, 169, 110, 0.2);
+  }
+
+  .om-symbol {
+    font-size: 3.2rem;
+    color: #C9A96E;
+    margin-top: 24px;
+    opacity: 0.9;
+  }
+
+  .couple-names {
+    margin-top: 40px;
+  }
+
+  .couple-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 4rem;
+    font-weight: 300;
+    color: #FFFFFF;
+    letter-spacing: 10px;
+    text-transform: uppercase;
+    line-height: 1.15;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  }
+
+  .couple-ampersand {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.4rem;
+    color: #C9A96E;
+    margin: 8px 0;
+    display: block;
+  }
+
+  .divider {
+    width: 300px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #C9A96E, transparent);
+    margin: 36px 0;
+  }
+
+  .invite-text {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.85);
+    letter-spacing: 2px;
+    line-height: 1.8;
+    max-width: 580px;
+  }
+
+  /* Events */
+  .events {
+    margin-top: 44px;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+  }
+
+  .event-row {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+  }
+
+  .event-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.55rem;
+    font-weight: 600;
+    color: #C9A96E;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+  }
+
+  .event-date {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.8);
+    letter-spacing: 2.5px;
+  }
+
+  .event-separator {
+    width: 40px;
+    height: 1px;
+    background: rgba(201, 169, 110, 0.3);
+    margin: 0 auto;
+  }
+
+  .venue {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.15rem;
+    color: rgba(201, 169, 110, 0.7);
+    margin-top: 40px;
+    letter-spacing: 2px;
+  }
+
+  .save-the-date {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.2rem;
+    color: #C9A96E;
+    margin-top: auto;
+    letter-spacing: 2px;
+    padding-top: 30px;
+  }
+
+  /* Decorative flourish accents near corners (inside content) */
+  .flourish-top, .flourish-bottom {
+    width: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+  }
+
+  .flourish-top {
+    margin-bottom: 0;
+  }
+
+  .flourish-bottom {
+    margin-top: 0;
+  }
+
+  .fl-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(201, 169, 110, 0.5));
+  }
+
+  .fl-line-r {
+    background: linear-gradient(90deg, rgba(201, 169, 110, 0.5), transparent);
+  }
+
+  .fl-dot {
+    width: 4px;
+    height: 4px;
+    border: 1px solid rgba(201, 169, 110, 0.5);
+    transform: rotate(45deg);
+    flex-shrink: 0;
+    margin: 0 6px;
+  }
+</style>
+</head>
+<body>
+
+<div class="card">
+  <!-- Borders -->
+  <div class="border-outer"></div>
+  <div class="border-inner"></div>
+
+  <!-- Corner decorations -->
+  <div class="corner corner-tl"></div>
+  <div class="corner corner-tr"></div>
+  <div class="corner corner-bl"></div>
+  <div class="corner corner-br"></div>
+
+  <!-- Content -->
+  <div class="content">
+
+    <!-- Top ornament -->
+    <div class="ornament">
+      <span class="ornament-dot"></span>
+      <span class="ornament-line"></span>
+      <span class="ornament-diamond"></span>
+      <span class="ornament-line ornament-line-right"></span>
+      <span class="ornament-dot"></span>
+    </div>
+
+    <!-- Wedding Invitation -->
+    <div class="wedding-invitation">Wedding Invitation</div>
+
+    <!-- Om symbol -->
+    <div class="om-symbol">&#x0950;</div>
+
+    <!-- Shubh Vivah -->
+    <div class="shubh-vivah">शुभ विवाह</div>
+
+    <!-- Couple Names -->
+    <div class="couple-names">
+      <div class="couple-name">Shivam</div>
+      <span class="couple-ampersand">&amp;</span>
+      <div class="couple-name">Rekha</div>
+    </div>
+
+    <!-- Divider -->
+    <div class="divider"></div>
+
+    <!-- Invite text -->
+    <div class="invite-text">
+      Together with their families<br>invite you to celebrate their wedding
+    </div>
+
+    <!-- Events -->
+    <div class="events">
+      <div class="event-row">
+        <div class="event-name">Tilak</div>
+        <div class="event-date">19th April 2026</div>
+      </div>
+      <div class="event-separator"></div>
+      <div class="event-row">
+        <div class="event-name">Mehndi</div>
+        <div class="event-date">26th April 2026</div>
+      </div>
+      <div class="event-separator"></div>
+      <div class="event-row">
+        <div class="event-name">Haldi &amp; Sangeet</div>
+        <div class="event-date">27th April 2026</div>
+      </div>
+      <div class="event-separator"></div>
+      <div class="event-row">
+        <div class="event-name">Wedding</div>
+        <div class="event-date">28th April 2026</div>
+      </div>
+    </div>
+
+    <!-- Venue -->
+    <div class="venue">Venue details to follow</div>
+
+    <!-- Bottom ornament -->
+    <div style="margin-top: 40px;">
+      <div class="ornament">
+        <span class="ornament-dot"></span>
+        <span class="ornament-line"></span>
+        <span class="ornament-diamond"></span>
+        <span class="ornament-line ornament-line-right"></span>
+        <span class="ornament-dot"></span>
+      </div>
+    </div>
+
+    <!-- Save the Date -->
+    <div class="save-the-date">Save the Date</div>
+
+  </div>
+</div>
+
+</body>
+</html>
